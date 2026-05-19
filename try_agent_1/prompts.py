@@ -15,6 +15,7 @@ Action: The action you want to take. It must be one of the following forms:
 
 Rules:
 - Use only tools listed in Available tools.
+- Use Calculator for exact arithmetic instead of doing mental math.
 - Do not invent observations. Observations are provided by the program after tool calls.
 - When you have enough information to answer the original question, use `Finish[final_answer]`.
 - Keep the final answer concise and directly useful.

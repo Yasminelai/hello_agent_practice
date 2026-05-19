@@ -35,7 +35,7 @@ hello_agent_2/
 - `try_agent_1/factory.py`: factory functions for creating configured agents.
 - `try_agent_1/prompts.py`: all prompt templates in one place.
 - `try_agent_1/parsers.py`: shared parsers for ReAct actions and Plan-and-Solve plans.
-- `try_agent_1/tools.py`: external tools, currently web search through SerpApi.
+- `try_agent_1/tools.py`: external tools and tool registration, currently `Search` and `Calculator`.
 - `try_agent_1/react.py`: ReAct agent implementation.
 - `try_agent_1/plan.py`: Plan-and-Solve implementation, including `Planner`, `Executor`, and `PlanAndSolveAgent`.
 - `try_agent_1/reflection.py`: Reflection agent implementation.
@@ -52,7 +52,7 @@ Thought -> Action -> Observation -> ... -> Finish
 
 The model reasons about the next step, chooses an action, receives an observation from a tool, and repeats until it returns a final answer.
 
-Use this mode when the task may need external information, such as web search.
+Use this mode when the task may need external information, such as web search. It also includes a safe `Calculator` tool for exact arithmetic.
 
 ### Plan-and-Solve
 
@@ -132,6 +132,12 @@ Set the maximum ReAct loop steps:
 python try_agent.py --mode react --question "Recommend a badminton racket to a beginner." --max-steps 5
 ```
 
+Calculator example:
+
+```powershell
+python try_agent.py --mode react --question "Calculate (123 + 456) * 789 / 12."
+```
+
 ### Plan-and-Solve
 
 ```powershell
@@ -187,3 +193,4 @@ print(plan_agent.run("Recommend a badminton racket to a beginner."))
 reflection_agent = build_reflection_agent(max_iterations=2)
 print(reflection_agent.run("Write a Python function that returns all prime numbers from 1 to n."))
 ```
+
